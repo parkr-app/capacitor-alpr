@@ -54,16 +54,6 @@ kotlin {
     }
 }
 
-// app.parkr:alpr is resolved by the app, so its repository goes on every project.
-rootProject.allprojects {
-    repositories {
-        maven {
-            url = uri("https://alpr.parkr.app/maven")
-            content { includeGroup "app.parkr" }
-        }
-    }
-}
-
 repositories {
     google()
     mavenCentral()

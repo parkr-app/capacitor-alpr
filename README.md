@@ -46,7 +46,7 @@ Requires Capacitor 8, iOS 15.1 and Android 7.0 (API 24).
 
 **iOS:** add `NSCameraUsageDescription` to `ios/App/App/Info.plist`.
 
-**Android:** the plugin adds the `CAMERA` permission and the `https://alpr.parkr.app/maven` repository for the `app.parkr:alpr` SDK.
+**Android:** the plugin adds the `CAMERA` permission. The `app.parkr:alpr` SDK comes from Maven Central.
 
 ## Usage
 
