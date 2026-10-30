@@ -1,0 +1,90 @@
+{
+  "name": "capacitor-alpr",
+  "version": "0.4.0",
+  "description": "On-device license plate recognition (ALPR/ANPR) for Capacitor and Ionic. Fully offline, 65 countries.",
+  "main": "dist/plugin.cjs.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "unpkg": "dist/plugin.js",
+  "files": [
+    "android/src/main/",
+    "android/build.gradle",
+    "dist/",
+    "ios/Sources",
+    "ios/Frameworks",
+    "Package.swift",
+    "CapacitorAlpr.podspec",
+    "SDK-LICENSE.md",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "author": "Bileier AS <post@parkr.app>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parkr-app/capacitor-alpr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/parkr-app/capacitor-alpr/issues"
+  },
+  "keywords": [
+    "capacitor",
+    "capacitor-plugin",
+    "ionic",
+    "alpr",
+    "anpr",
+    "license-plate-recognition",
+    "license-plate",
+    "ocr",
+    "on-device",
+    "offline",
+    "camera"
+  ],
+  "scripts": {
+    "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
+    "verify:ios": "xcodebuild -scheme CapacitorAlpr -destination generic/platform=iOS",
+    "verify:android": "cd android && ./gradlew clean build && cd ..",
+    "verify:web": "npm run build",
+    "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
+    "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
+    "eslint": "eslint . --ext ts",
+    "prettier": "prettier \"**/*.{css,html,ts,js,java}\" --plugin=prettier-plugin-java",
+    "swiftlint": "node-swiftlint",
+    "build": "npm run clean && tsc && rollup -c rollup.config.mjs",
+    "clean": "rimraf ./dist",
+    "watch": "tsc --watch",
+    "prepublishOnly": "scripts/fetch-binaries.sh && npm run build",
+    "fetch-binaries": "scripts/fetch-binaries.sh"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/ios": "^8.0.0",
+    "@ionic/eslint-config": "^0.4.0",
+    "@ionic/prettier-config": "^4.0.0",
+    "@ionic/swiftlint-config": "^2.0.0",
+    "eslint": "^8.57.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-java": "^2.7.7",
+    "rimraf": "^6.1.0",
+    "rollup": "^4.53.2",
+    "swiftlint": "^2.0.0",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@capacitor/core": ">=8.0.0"
+  },
+  "prettier": "@ionic/prettier-config",
+  "swiftlint": "@ionic/swiftlint-config",
+  "eslintConfig": {
+    "extends": "@ionic/eslint-config/recommended"
+  },
+  "capacitor": {
+    "ios": {
+      "src": "ios"
+    },
+    "android": {
+      "src": "android"
+    }
+  },
+  "homepage": "https://alpr.parkr.app"
+}

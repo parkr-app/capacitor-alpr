@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>ALPR Capacitor</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: transparent; color: #fff; font: 16px -apple-system, system-ui, sans-serif; }
+      #camera { position: fixed; inset: 0; }
+      #results { position: fixed; left: 16px; right: 16px; bottom: calc(32px + env(safe-area-inset-bottom)); padding: 12px; border-radius: 12px; background: rgba(0, 0, 0, 0.55); white-space: pre-line; z-index: 1; }
+    </style>
+  </head>
+  <body>
+    <div id="camera"></div>
+    <div id="results">Point the camera at a license plate.</div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
