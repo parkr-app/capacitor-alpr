@@ -72,7 +72,8 @@ export interface CameraFrame {
   height: number;
 }
 
-export type AlprErrorCode = 'ERR_LICENSE_REQUIRED' | 'ERR_LICENSE_INVALID' | 'ERR_MODEL_LOAD' | 'ERR_CAMERA' | 'ERR_FILE';
+export type AlprErrorCode =
+  'ERR_LICENSE_REQUIRED' | 'ERR_LICENSE_INVALID' | 'ERR_MODEL_LOAD' | 'ERR_CAMERA' | 'ERR_FILE';
 
 export interface AlprError {
   code: AlprErrorCode;
