@@ -130,8 +130,8 @@ public class AlprPlugin: CAPPlugin, CAPBridgedPlugin, AlprCameraViewDelegate {
     if has("mockImage") { camera.mockImage = call.getString("mockImage").map(resolveAsset) }
     if has("torch") { camera.torch = call.getBool("torch") ?? false }
     if has("zoom") { camera.zoom = call.getDouble("zoom") ?? 1 }
-    if has("scanRegion") { camera.scanRegion = call.getObject("scanRegion").map(rect) }
-    if has("showScanRegion") { camera.showScanRegion = call.getBool("showScanRegion") ?? true }
+    if has("region") { camera.region = call.getObject("region").map(rect) }
+    if has("showRegion") { camera.showRegion = call.getBool("showRegion") ?? true }
     if has("overlayStyle") { camera.overlayStyle = call.getObject("overlayStyle").map(overlayStyle) }
     if has("detectionThreshold") { camera.detectionThreshold = call.getFloat("detectionThreshold") }
     if has("ocrThreshold") { camera.ocrThreshold = call.getFloat("ocrThreshold") }
@@ -154,10 +154,6 @@ public class AlprPlugin: CAPPlugin, CAPBridgedPlugin, AlprCameraViewDelegate {
 
   private func platesEvent(_ plates: [AlprPlate], _ frameSize: CGSize) -> [String: Any] {
     ["plates": plates.map(plateObject), "frameWidth": Double(frameSize.width), "frameHeight": Double(frameSize.height)]
-  }
-
-  public func alprCameraView(_ view: AlprCameraView, didDetectRaw plates: [AlprPlate], frameSize: CGSize) {
-    notifyListeners("platesRaw", data: platesEvent(plates, frameSize))
   }
 
   public func alprCameraView(_ view: AlprCameraView, didDetect plates: [AlprPlate], frameSize: CGSize) {

@@ -137,8 +137,8 @@ class AlprPlugin : Plugin(), AlprCameraViewListener {
     if (data.has("mockImage")) view.mockImage = call.getString("mockImage")?.let(::resolveAsset)
     if (data.has("torch")) view.torch = data.getBoolean("torch")
     if (data.has("zoom")) view.zoom = data.getDouble("zoom").toFloat()
-    if (data.has("scanRegion")) view.scanRegion = call.getObject("scanRegion")?.let(::boundingBox)
-    if (data.has("showScanRegion")) view.showScanRegion = data.getBoolean("showScanRegion")
+    if (data.has("region")) view.region = call.getObject("region")?.let(::boundingBox)
+    if (data.has("showRegion")) view.showRegion = data.getBoolean("showRegion")
     if (data.has("overlayStyle")) view.overlayStyle = call.getObject("overlayStyle")?.let(::overlayStyle)
     if (data.has("detectionThreshold")) view.detectionThreshold = call.getFloat("detectionThreshold")
     if (data.has("ocrThreshold")) view.ocrThreshold = call.getFloat("ocrThreshold")
@@ -163,9 +163,6 @@ class AlprPlugin : Plugin(), AlprCameraViewListener {
     .put("plates", JSArray(plates.map(::plateObject)))
     .put("frameWidth", frameWidth)
     .put("frameHeight", frameHeight)
-
-  override fun onPlatesRaw(view: AlprCameraView, plates: List<AlprPlate>, frameWidth: Int, frameHeight: Int) =
-    notifyListeners("platesRaw", platesEvent(plates, frameWidth, frameHeight))
 
   override fun onPlates(view: AlprCameraView, plates: List<AlprPlate>, frameWidth: Int, frameHeight: Int) =
     notifyListeners("plates", platesEvent(plates, frameWidth, frameHeight))

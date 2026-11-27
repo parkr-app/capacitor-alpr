@@ -68,7 +68,7 @@ const { plates } = await Alpr.scanImage({ path: '/path/to/photo.jpg' });
 
 | | Development builds | Release builds without a key | Release builds with a key |
 | --- | --- | --- | --- |
-| Live scanning, `plates`, `platesRaw`, default overlay | ✓ | ✓ | ✓ |
+| Live scanning, `plates`, default overlay | ✓ | ✓ | ✓ |
 | PRO features | ✓ | Off | ✓ |
 
 Development builds are debug builds, simulators and emulators, TestFlight and ad-hoc builds. Without a key, release builds fall back quietly and never crash: the scanner runs on the CPU with default settings, `plate` and `scan` don't fire, torch and zoom stay off, and `scanImage` rejects with `ERR_LICENSE_REQUIRED`.
@@ -95,9 +95,9 @@ At most once a day per device, the SDK sends a small anonymous report to `alpr.p
 | `checkPermissions()`, `requestPermissions()` | `{ camera }` |
 | `setTelemetryEnabled({ enabled })` | |
 
-Camera options: `isActive`, `throttle` (ms, default 200), `showFps`, `showOverlay`, `torch`, `zoom`, `scanRegion`, `showScanRegion`, `overlayStyle` (colors as `#RRGGBB` or `#RRGGBBAA`), `detectionThreshold`, `ocrThreshold`, `accelerator` (`gpu` or `cpu`) and `mockImage` (an image to scan instead of the camera, for simulators: a file path, or a path in your web assets).
+Camera options: `isActive`, `throttle` (ms, default 200), `showFps`, `showOverlay`, `torch`, `zoom`, `region`, `showRegion`, `overlayStyle` (colors as `#RRGGBB` or `#RRGGBBAA`), `detectionThreshold`, `ocrThreshold`, `accelerator` (`gpu` or `cpu`) and `mockImage` (an image to scan instead of the camera, for simulators: a file path, or a path in your web assets).
 
-Events: `platesRaw` and `plates` with `{ plates, frameWidth, frameHeight }`, `plate` and `scan` with `{ plate }` (PRO), and `error` with `{ code, message }`. `toViewRect(bbox, frame, view)` maps a plate's normalized box to the camera view.
+Events: `plates` with `{ plates, frameWidth, frameHeight }`, `plate` and `scan` with `{ plate }` (PRO), and `error` with `{ code, message }`. `toViewRect(bbox, frame, view)` maps a plate's normalized box to the camera view.
 
 `DetectedPlate` has `plate`, `ocrConfidence`, `detectionConfidence`, `bbox`, `country`, `countryCode` and `countryConfidence`.
 

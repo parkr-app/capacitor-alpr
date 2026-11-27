@@ -56,8 +56,8 @@ export interface CameraOptions {
   mockImage?: string;
   torch?: boolean;
   zoom?: number;
-  scanRegion?: BoundingBox;
-  showScanRegion?: boolean;
+  region?: BoundingBox;
+  showRegion?: boolean;
   overlayStyle?: PlateOverlayStyle;
   detectionThreshold?: number;
   ocrThreshold?: number;
@@ -72,8 +72,7 @@ export interface CameraFrame {
   height: number;
 }
 
-export type AlprErrorCode =
-  'ERR_LICENSE_REQUIRED' | 'ERR_LICENSE_INVALID' | 'ERR_MODEL_LOAD' | 'ERR_CAMERA' | 'ERR_FILE';
+export type AlprErrorCode = 'ERR_LICENSE_REQUIRED' | 'ERR_MODEL_LOAD' | 'ERR_CAMERA' | 'ERR_FILE';
 
 export interface AlprError {
   code: AlprErrorCode;
@@ -109,8 +108,6 @@ export interface AlprPlugin {
   checkPermissions(): Promise<PermissionStatus>;
   requestPermissions(): Promise<PermissionStatus>;
 
-  /** Every plate read in the current frame, unsmoothed. */
-  addListener(eventName: 'platesRaw', listener: (event: PlatesEvent) => void): Promise<PluginListenerHandle>;
   /** Confirmed plates in view, with consensus text and smoothed boxes. */
   addListener(eventName: 'plates', listener: (event: PlatesEvent) => void): Promise<PluginListenerHandle>;
   /** Each plate once, when several frames agree. For continuous scanning. PRO. */
